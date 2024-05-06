@@ -1,5 +1,6 @@
 import './style.css'
 
+import { SCREENSIZES } from './constants'; // Pulling some data out of a constants folder 
 import Phaser, { Game, Physics } from 'phaser'
 
 class GameScene extends Phaser.Scene{
@@ -21,25 +22,6 @@ class GameScene extends Phaser.Scene{
 }
 
 //we need at least a 5:4 ratio for the coord sys
-const SCREENSIZES = {
-  "BnL":{
-    width:900,
-    height:720,
-  },
-  "smol":{
-    width:800,
-    height:640,
-  },
-  "smoler":{
-    width:700,
-    height:560,
-  },
-  "img":{
-    width:938,
-    height:750,
-  },
-  
-}
 
 const config ={
   type:Phaser.WEBGL,
