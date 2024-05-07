@@ -27,3 +27,6 @@ main{
   display:flex;
   z-index: 1;
 }
+#gameBG{
+  background-color: lightgreen;
+}

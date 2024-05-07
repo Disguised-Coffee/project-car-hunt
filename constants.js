@@ -15,7 +15,7 @@ export class SCREENSIZES {
         height: 560,
     };
     static img = {
-        width: 938,
-        height: 750,
+        width: 960,
+        height: 768,
     };
 }
