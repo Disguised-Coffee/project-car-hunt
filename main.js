@@ -9,7 +9,7 @@ let input = document.querySelector("input");
 
 
 // move this to constants
-let playerSpeed = 100;
+let playerSpeed = 230;
 
 class GameScene extends Phaser.Scene {
 
@@ -20,6 +20,44 @@ class GameScene extends Phaser.Scene {
 
     // this.cursor; //obj for keydowns
     this.dir = 0;
+
+    this.isPaused = false;
+
+
+    /**
+     * if the player 
+     */
+    this.setRandomDir = () => {
+      let number = Math.round(3 * Math.random());  //number between 0 and 3 (4 integers)
+      switch (number) {
+        case 0:
+          this.player.setVelocityX(-this.playerSpeed);
+          this.player.setRotation(-Math.PI / 2);
+          this.player.setSize(61, 36)
+          break;
+        case 1:
+          this.player.setVelocityX(this.playerSpeed);
+          this.player.setRotation(Math.PI / 2);
+          this.player.setSize(61, 36)
+          break;
+        case 2:
+          this.player.setVelocityY(-this.playerSpeed);
+          this.player.setRotation(0);
+          this.player.setSize(36, 61);
+          break;
+        case 3:
+          this.player.setVelocityY(this.playerSpeed);
+          this.player.setRotation(Math.PI);
+          this.player.setSize(36, 61)
+          break;
+        default:
+          console.log("BRUH? HOW????")
+          break;
+      }
+
+
+    }
+
   }
 
 
@@ -27,69 +65,114 @@ class GameScene extends Phaser.Scene {
   preload() {
     //grab the background image from server
     this.load.image("tiles", "../assets/terrain.png");
-    this.load.tilemapTiledJSON("map", "../assets/map.json");
+    this.load.tilemapTiledJSON("map", "../assets/map2.json");
 
-    this.load.image("player", "/public/you.png");
-
-
-
+    this.load.multiatlas('player', '../assets/atlas/blah.json', '../assets/atlas');
   }
 
   // present assets on screen, load assets in client
   create() {
-    const map = this.make.tilemap({ key: "map" });
+    this.map = this.make.tilemap({ key: "map" });
 
-    const tileset = map.addTilesetImage("mapy", "tiles"); //add the titleset to the 
+    const tileset = this.map.addTilesetImage("mapy", "tiles"); //add the titleset to the 
 
     // Parameters: layer name (or index) from Tiled, tileset, x, y
-    const belowLayer = map.createLayer("floor", tileset, 0, 0);
-    const worldLayer = map.createLayer("structures", tileset, 0, 0);
-    const islandLayer = map.createLayer("islands", tileset, 0, 0);
-    const tunnels = map.createLayer("tunnels", tileset, 0, 0); // redo this layer b/c structure on wrong layer
+    const belowLayer = this.map.createLayer("floor", tileset, 0, 0);
+    const tunnels = this.map.createLayer("tunnels", tileset, 0, 0);
+    const worldLayer = this.map.createLayer("structures", tileset, 0, 0);
+    const islandLayer = this.map.createLayer("islands", tileset, 0, 0);
 
-    
-    worldLayer.setCollisionBetween(2, 10);
+    this.player = this.physics.add.sprite(100, 100, 'player', 'blah.png');
+
+    this.player.setScale(0.75);
 
     worldLayer.setCollisionByProperty({ collides: true });
-
-    // //load that image.
-    this.add.image(0, 0, "bg").setOrigin(0, 0); //load sprite 'bg' at set it to max window sizes with origin of 0,0.
-    this.player = this.physics.add.image(0, SCREENSIZES.img.height - 400, "player").setOrigin(0, 0).setScale(0.1);
-    // this.player.setImmovable(true);
-
-    this.cursor = this.input.keyboard.createCursorKeys();
+    islandLayer.setCollisionByProperty({ collides: true });
 
     this.player.setCollideWorldBounds(true);
 
     this.physics.add.collider(this.player, worldLayer);
+
+    this.physics.add.collider(this.player, islandLayer);
+
+
+    //tunnels
+
+
+    //obj to hold 
+    this.cursor = this.input.keyboard.createCursorKeys();
+
+    //do once on play
+    this.setRandomDir();
   }
 
   // update values
   update() {
+
+    //PAUSING... CUT BY MVP
+    // if(catchPause == true) this.isPaused = !this.isPaused;
+
+    // if(this.isPaused){
+    //   this.scene.pause();
+    //   return;
+    // }
+
+    console.log(this.map.worldToTileX(this.player.x));
+
+    // this.scene.
+    // this.player.y.
+
+    // for directions
     const { left, right, up, down } = this.cursor;
-
-
 
     if (left.isDown) {
       this.player.setVelocityX(-this.playerSpeed);
       this.player.setVelocityY(0);
-      console.log(input.value);
+      this.player.setRotation(-Math.PI / 2);
+      this.player.setSize(61, 36)
+      //make sure to adjust the size of the thing!
     }
     else if (right.isDown) {
       this.player.setVelocityX(this.playerSpeed);
       this.player.setVelocityY(0);
+      this.player.setRotation(Math.PI / 2);
+      this.player.setSize(61, 36)
     }
     else if (down.isDown) {
       this.player.setVelocityX(0);
       this.player.setVelocityY(this.playerSpeed);
+      this.player.setRotation(Math.PI);
+      this.player.setSize(36, 61)
     }
     else if (up.isDown) {
       this.player.setVelocityX(0);
       this.player.setVelocityY(-this.playerSpeed);
+      this.player.setRotation(0);
+      this.player.setSize(36, 61);
     }
 
   }
+
+  teleportPlayer(){
+
+    console.log("SUCCESS!");
+  }
 }
+
+let catchPause = false;
+
+//FEATURE
+document.querySelector("button").addEventListener("click",(e)=>{
+  catchPause = !catchPause;
+  
+  if(catchPause){
+    game.pause();
+  }
+  else{
+    game.resume();
+  }
+});
+
 
 
 //we need at least a 5:4 ratio for the coord sys
@@ -111,3 +194,6 @@ const config = {
 
 
 var game = new Phaser.Game(config); 
+
+
+
