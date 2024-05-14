@@ -3,7 +3,8 @@
 import './style.css'
 
 import { SCREENSIZES } from './constants'; // Pulling some data out of a constants folder 
-import Phaser from 'phaser'
+import Phaser from 'phaser';
+import js from 'easystarjs'
 
 let input = document.querySelector("input");
 
@@ -22,6 +23,13 @@ class GameScene extends Phaser.Scene {
     this.dir = 0;
 
     this.isPaused = false;
+
+    // this.finder = new js();
+
+    this.keyA;
+    this.keyW;
+    this.keyS;
+    this.keyD;
 
 
     /**
@@ -72,6 +80,8 @@ class GameScene extends Phaser.Scene {
 
   // present assets on screen, load assets in client
   create() {
+    this.finder = js.js();
+    
     this.map = this.make.tilemap({ key: "map" });
 
     const tileset = this.map.addTilesetImage("mapy", "tiles"); //add the titleset to the 
@@ -90,6 +100,8 @@ class GameScene extends Phaser.Scene {
     islandLayer.setCollisionByProperty({ collides: true });
 
     this.player.setCollideWorldBounds(true);
+
+    this.map.filterTiles(tiles => console.log(tiles))
 
     this.physics.add.collider(this.player, worldLayer);
 
@@ -117,7 +129,9 @@ class GameScene extends Phaser.Scene {
     //   return;
     // }
 
-    console.log(this.map.worldToTileX(this.player.x));
+    // console.log(this.map.worldToTileX(this.player.x));
+
+    // 
 
     // this.scene.
     // this.player.y.
@@ -125,26 +139,31 @@ class GameScene extends Phaser.Scene {
     // for directions
     const { left, right, up, down } = this.cursor;
 
-    if (left.isDown) {
+    this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+    this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+    this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+    this.keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+  
+    if (left.isDown || this.keyA.isDown) {
       this.player.setVelocityX(-this.playerSpeed);
       this.player.setVelocityY(0);
       this.player.setRotation(-Math.PI / 2);
       this.player.setSize(61, 36)
       //make sure to adjust the size of the thing!
     }
-    else if (right.isDown) {
+    else if (right.isDown || this.keyD.isDown) {
       this.player.setVelocityX(this.playerSpeed);
       this.player.setVelocityY(0);
       this.player.setRotation(Math.PI / 2);
       this.player.setSize(61, 36)
     }
-    else if (down.isDown) {
+    else if (down.isDown || this.keyS.isDown) {
       this.player.setVelocityX(0);
       this.player.setVelocityY(this.playerSpeed);
       this.player.setRotation(Math.PI);
       this.player.setSize(36, 61)
     }
-    else if (up.isDown) {
+    else if (up.isDown || this.keyW.isDown) {
       this.player.setVelocityX(0);
       this.player.setVelocityY(-this.playerSpeed);
       this.player.setRotation(0);
@@ -154,7 +173,6 @@ class GameScene extends Phaser.Scene {
   }
 
   teleportPlayer(){
-
     console.log("SUCCESS!");
   }
 }
@@ -172,8 +190,6 @@ document.querySelector("button").addEventListener("click",(e)=>{
     game.resume();
   }
 });
-
-
 
 //we need at least a 5:4 ratio for the coord sys
 
