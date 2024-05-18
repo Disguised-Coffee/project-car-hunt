@@ -1,0 +1,52 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "untitled.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "fileStates": {
+        "": {
+            "scaleInEditor": 1
+        },
+        "#bg": {
+            "scaleInDock": 1
+        },
+        "backgroundTitles.tsx": {
+            "scaleInDock": 0.5,
+            "scaleInEditor": 1
+        },
+        "untitled.tmx": {
+            "scale": 1,
+            "selectedLayer": -1,
+            "viewCenter": {
+                "x": 604,
+                "y": 503.5
+            }
+        },
+        "untitled.tmx#mapy": {
+            "scaleInDock": 1
+        }
+    },
+    "last.exportedFilePath": "C:/Cide/project-car-hunt/tiledAssets/mapTest3",
+    "last.imagePath": "C:/Cide/project-car-hunt/assets",
+    "lastUsedTilesetExportFilter": "JSON tileset files (*.tsj *.json)",
+    "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
+    "openFiles": [
+        "untitled.tmx"
+    ],
+    "project": "untitled.tiled-project",
+    "property.type": "int",
+    "recentFiles": [
+        "untitled.tmx",
+        "backgroundTitles.tsx"
+    ],
+    "tileset.embedInMap": true,
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 24,
+        "width": 30
+    }
+}
