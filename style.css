@@ -9,21 +9,27 @@
   box-sizing: border-box;
 }
 html,body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100%;
   overscroll-behavior: none;
- 
+
 }
 
 main{
   flex:1;
   display: flex;
+  filter: blur(5px);
+  animation: fadeIn 2s ease;
+
 }
 
 #gameCanvas{
   /* border: 1px solid black; */
   display:flex;
-  padding-inline: 25%;
   z-index: 1;
+  padding-inline: 50vh;
 }
 #gameBG{
   background-color: lightgreen;
@@ -31,20 +37,22 @@ main{
 
 /* ----------------------------------------------------------------------------- */
 
+
 .menu {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-content: center;
+  align-items: center;
   position: absolute;
   z-index: 1;
   text-align: center;
-  margin-top: 15vh;
   width: 65vh;
   height: 40vh;
   background-color: lavender;
   border: 50px solid lavender;
   border-radius: 75px;
+  padding-inline: 50px;
+  animation: fadeInBlur 2s ease;
 }
 
 h1 {
@@ -52,12 +60,14 @@ h1 {
   font-weight: 900;
   font-size: 65px;
   transform: scale(2, 1) perspective(280px) rotateX(25deg);
+  padding-inline: 155px;
 }
 
 h2 {
   font-family: 'Figtree', sans-serif;
   font-weight: 100;
   font-size: 18px;
+  margin-top: 50px;
 }
 
 .menu-buttons {
@@ -87,7 +97,7 @@ button:hover {
   background-color: #ffffff;
 }
 
-@keyframes fadeIn {
+@keyframes fadeInBlur {
   from {
       opacity: 0;
       filter: blur(15px);
@@ -96,5 +106,14 @@ button:hover {
   to {
       opacity: 1;
       filter: blur(0px);
+  }
+}
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+
+  to {
+      opacity: 1;
   }
 }
