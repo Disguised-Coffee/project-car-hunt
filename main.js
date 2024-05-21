@@ -273,6 +273,13 @@ class GameScene extends Phaser.Scene {
 }
 
 //FEATURE
+document.getElementById("start").addEventListener("click", (e) => {
+  console.log("hi");
+  if (game.isPaused) game.resume();
+  else game.pause();
+
+  isPaused = !isPaused;
+});
 document.getElementById("blah").addEventListener("click", (e) => {
   console.log("hi");
   if (game.isPaused) game.resume();
