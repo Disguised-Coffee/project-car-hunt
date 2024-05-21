@@ -31,17 +31,13 @@ main{
 
 /* ----------------------------------------------------------------------------- */
 
-/* body {
-  display: flex;
-  justify-content: center;
-  animation: fadeIn 2s ease;
-} */
-
 .menu {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-content: center;
+  position: absolute;
+  z-index: 1;
   text-align: center;
   margin-top: 15vh;
   width: 65vh;
@@ -49,7 +45,6 @@ main{
   background-color: lavender;
   border: 50px solid lavender;
   border-radius: 75px;
-
 }
 
 h1 {
