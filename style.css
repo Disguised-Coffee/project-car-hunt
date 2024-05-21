@@ -11,6 +11,7 @@
 html,body{
   height: 100%;
   overscroll-behavior: none;
+  background-color: lightgreen;
 }
 
 main{
@@ -29,4 +30,17 @@ main{
 }
 #gameBG{
   background-color: lightgreen;
+}
+.timerPlaceHolder {
+  display: flex;
+  flex-wrap: nowrap;
+  background-color: whitesmoke;
+  width: 100px;
+  margin: 10px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
+  position: absolute;
+  right: 6.5%;
+  top: 10%; 
 }
