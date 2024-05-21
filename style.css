@@ -46,12 +46,13 @@ main{
   position: absolute;
   z-index: 1;
   text-align: center;
-  width: 65vh;
-  height: 40vh;
+  width: 85vh;
+  height: 50vh;
   background-color: lavender;
   border: 50px solid lavender;
   border-radius: 75px;
-  padding-inline: 50px;
+  padding: 50px;
+  margin: 50px;
   animation: fadeInBlur 2s ease;
 }
 
@@ -67,7 +68,8 @@ h2 {
   font-family: 'Figtree', sans-serif;
   font-weight: 100;
   font-size: 18px;
-  margin-top: 50px;
+  margin-top: 30px;
+  margin-bottom: 60px;
 }
 
 .menu-buttons {
