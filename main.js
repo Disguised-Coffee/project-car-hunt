@@ -4,7 +4,7 @@ import './style.css'
 
 import { SCREENSIZES, GameSceneConsts } from './constants'; // Pulling some data out of a constants folder 
 import Phaser from 'phaser';
-import js from 'easystarjs'
+// import js from 'easystarjs';
 
 let input = document.querySelector("input");
 
@@ -20,7 +20,7 @@ class GameScene extends Phaser.Scene {
     this.player; //adds the variable player to the game obj
     this.playerSpeed = playerSpeed;
 
-    // this.cursor; //obj for keydowns
+    this.cursor; //obj for keydowns
     this.dir = 0;
 
     this.isPaused = false;
@@ -88,7 +88,7 @@ class GameScene extends Phaser.Scene {
       this.game.pause();
     }
     //funny finder lib c:
-    this.finder = js.js();
+    // this.finder = js.js();
     
     this.map = this.make.tilemap({ key: "map" });
 
@@ -273,7 +273,7 @@ class GameScene extends Phaser.Scene {
 }
 
 //FEATURE
-document.querySelector("button").addEventListener("click",(e)=>{
+document.getElementById("blah").addEventListener("click",(e)=>{
   console.log("hi");
   if(game.isPaused) game.resume();
   else game.pause();

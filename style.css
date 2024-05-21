@@ -11,6 +11,7 @@
 html,body{
   height: 100%;
   overscroll-behavior: none;
+ 
 }
 
 main{
@@ -19,14 +20,86 @@ main{
 }
 
 #gameCanvas{
-  border: 1px sloid black;
-  position: absolute;
-  top: 50%;
-  left:50%;
-  transform: translate(-50%,-50%);
+  /* border: 1px solid black; */
   display:flex;
+  padding-inline: 25%;
   z-index: 1;
 }
 #gameBG{
   background-color: lightgreen;
+}
+
+/* ----------------------------------------------------------------------------- */
+
+/* body {
+  display: flex;
+  justify-content: center;
+  animation: fadeIn 2s ease;
+} */
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  margin-top: 15vh;
+  width: 65vh;
+  height: 40vh;
+  background-color: lavender;
+  border: 50px solid lavender;
+  border-radius: 75px;
+
+}
+
+h1 {
+  font-family: 'TS Block', sans-serif;
+  font-weight: 900;
+  font-size: 65px;
+  transform: scale(2, 1) perspective(280px) rotateX(25deg);
+}
+
+h2 {
+  font-family: 'Figtree', sans-serif;
+  font-weight: 100;
+  font-size: 18px;
+}
+
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  padding-inline: 175px;
+  margin-top: -30px;
+  margin-bottom: 10px;
+}
+
+button {
+  color: #ffffff;
+  background-color: #2d63c8;
+  font-size: 19px;
+  font-family: 'Figtree', sans-serif;
+  border: 1px solid #2d63c8;
+  border-radius: 8px;
+  padding: 8px 50px;
+  margin-bottom: 10px ;
+  letter-spacing: 2px;
+  cursor: pointer
+}
+button:hover {
+  color: #2d63c8;
+  background-color: #ffffff;
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      filter: blur(15px);
+  }
+
+  to {
+      opacity: 1;
+      filter: blur(0px);
+  }
 }
