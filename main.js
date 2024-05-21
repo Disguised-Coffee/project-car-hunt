@@ -2,8 +2,8 @@
 
 import './style.css'
 
-import { SCREENSIZES } from './constants'; // Pulling some data out of a constants folder 
-import Phaser, { Core } from 'phaser';
+import { SCREENSIZES, GameSceneConsts } from './constants'; // Pulling some data out of a constants folder 
+import Phaser from 'phaser';
 import js from 'easystarjs'
 
 let input = document.querySelector("input");
@@ -84,7 +84,9 @@ class GameScene extends Phaser.Scene {
 
   // present assets on screen, load assets in client
   create() {
-
+    if(GameSceneConsts.startAsPaused){
+      this.game.pause();
+    }
     //funny finder lib c:
     this.finder = js.js();
     
@@ -270,12 +272,10 @@ class GameScene extends Phaser.Scene {
   }
 }
 
-let isPaused = false;
-
 //FEATURE
 document.querySelector("button").addEventListener("click",(e)=>{
   console.log("hi");
-  if(isPaused) game.resume();
+  if(game.isPaused) game.resume();
   else game.pause();
 
   isPaused = !isPaused;
