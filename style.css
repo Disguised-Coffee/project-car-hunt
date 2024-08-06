@@ -9,24 +9,119 @@
   box-sizing: border-box;
 }
 html,body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100%;
   overscroll-behavior: none;
+  overflow-x: hidden;
 }
 
 main{
   flex:1;
   display: flex;
+  filter: blur(5px);
+  animation: fadeIn 2s ease;
+}
+
+canvas{
+  transform: scale(0.8);
 }
 
 #gameCanvas{
-  border: 1px sloid black;
-  position: absolute;
-  top: 50%;
-  left:50%;
-  transform: translate(-50%,-50%);
+  /* border: 1px solid black; */
   display:flex;
   z-index: 1;
+  padding-inline: 50vh;
 }
 #gameBG{
   background-color: lightgreen;
+}
+
+/* ----------------------------------------------------------------------------- */
+
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 1;
+  text-align: center;
+  width: 85vh;
+  height: 50vh;
+  background-color: lavender;
+  border: 50px solid lavender;
+  border-radius: 75px;
+  padding: 50px;
+  margin: 50px;
+  animation: fadeInBlur 2s ease;
+}
+
+h1 {
+  font-family: 'TS Block', sans-serif;
+  font-weight: 900;
+  font-size: 65px;
+  transform: scale(2, 1) perspective(280px) rotateX(25deg);
+  padding-inline: 155px;
+}
+
+h2 {
+  font-family: 'Figtree', sans-serif;
+  font-weight: 100;
+  font-size: 18px;
+  margin-top: 30px;
+  margin-bottom: 60px;
+}
+
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  padding-inline: 175px;
+  margin-top: -30px;
+  margin-bottom: 10px;
+}
+
+button {
+  color: #ffffff;
+  background-color: #2d63c8;
+  font-size: 19px;
+  font-family: 'Figtree', sans-serif;
+  border: 1px solid #2d63c8;
+  border-radius: 8px;
+  padding: 8px 50px;
+  margin-bottom: 10px ;
+  letter-spacing: 2px;
+  cursor: pointer
+}
+button:hover {
+  color: #2d63c8;
+  background-color: #ffffff;
+}
+
+@keyframes fadeInBlur {
+  from {
+      opacity: 0;
+      filter: blur(15px);
+  }
+
+  to {
+      opacity: 1;
+      filter: blur(0px);
+  }
+}
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+
+  to {
+      opacity: 1;
+  }
+}
+#blah {
+transform:translateX(86.5vh)
 }

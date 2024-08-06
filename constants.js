@@ -8,11 +8,9 @@ export class SCREENSIZES {
     };
 }
 
-export class SpriteScales {
+export class GameSceneConsts {
     static img = {
         car: 0.5,
     };
-    static blah = {
-        you: "laskdsad",
-    };
+    static startAsPaused = true;
 }
