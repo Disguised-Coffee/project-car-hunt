@@ -263,19 +263,22 @@ class GameScene extends Phaser.Scene {
   }
 }
 
-class Map{
-  
-  constructor(map){
-      this.map = map
+// Player.js
+class Player {
+  constructor(scene) {
+      this.scene = scene;
+      // Initialize player properties (e.g., position, animations)
   }
 
-  init() {
-    return
+  create() {
+      // Create player sprites, animations, and input handling
   }
 
-  pe() {
-    return
+  update() {
+      // Update player logic (e.g., movement, collisions)
   }
+
+  // Add any other player-specific methods here
 }
 
 //FEATURE
