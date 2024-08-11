@@ -1,41 +1,37 @@
+@import url(https://fonts.googleapis.com/css2?family=TS+Block&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Figtree:wght@400;700&display=swap);
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 
 }
 
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-html,body{
+html,
+body {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
   overscroll-behavior: none;
-  overflow-x: hidden;
+  overflow: hidden;
+  background-color: lightgreen;
 }
 
-main{
-  flex:1;
+main {
+  flex: 1;
   display: flex;
   filter: blur(5px);
   animation: fadeIn 2s ease;
 }
 
-canvas{
+canvas {
   transform: scale(0.8);
-}
-
-#gameCanvas{
-  /* border: 1px solid black; */
-  display:flex;
   z-index: 1;
   padding-inline: 50vh;
-}
-#gameBG{
-  background-color: lightgreen;
 }
 
 /* ----------------------------------------------------------------------------- */
@@ -93,35 +89,36 @@ button {
   border: 1px solid #2d63c8;
   border-radius: 8px;
   padding: 8px 50px;
-  margin-bottom: 10px ;
+  margin-bottom: 10px;
   letter-spacing: 2px;
-  cursor: pointer
-}
-button:hover {
-  color: #2d63c8;
-  background-color: #ffffff;
+  cursor: pointer;
+
+  &:hover {
+    color: #2d63c8;
+    background-color: #ffffff;
+    border-color: #dde2eb;
+  }
+
 }
 
 @keyframes fadeInBlur {
   from {
-      opacity: 0;
-      filter: blur(15px);
+    opacity: 0;
+    filter: blur(15px);
   }
 
   to {
-      opacity: 1;
-      filter: blur(0px);
+    opacity: 1;
+    filter: blur(0px);
   }
 }
+
 @keyframes fadeIn {
   from {
-      opacity: 0;
+    opacity: 0;
   }
 
   to {
-      opacity: 1;
+    opacity: 1;
   }
-}
-#blah {
-transform:translateX(86.5vh)
 }

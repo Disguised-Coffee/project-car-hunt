@@ -1,16 +1,8 @@
-// "bable"
+import {default as CN} from './constants';
 
-import './style.css'
-
-import { SCREENSIZES, GameSceneConsts } from './constants'; // Pulling some data out of a constants folder 
 import Phaser from 'phaser';
 // import js from 'easystarjs';
 
-let input = document.querySelector("input");
-
-
-// move this to constants
-let playerSpeed = 230;
 
 class GameScene extends Phaser.Scene {
 
@@ -18,7 +10,7 @@ class GameScene extends Phaser.Scene {
   constructor() {
     super("scene-game");
     this.player; //adds the variable player to the game obj
-    this.playerSpeed = playerSpeed;
+    this.playerSpeed = CN.playerSpeed;
 
     this.cursor; //obj for keydowns
     this.dir = 0;
@@ -63,8 +55,7 @@ class GameScene extends Phaser.Scene {
           this.player.setSize(36, 61)
           break;
         default:
-          console.log("BRUH? HOW????")
-          break;
+          throw new Error;
       }
 
 
@@ -76,15 +67,15 @@ class GameScene extends Phaser.Scene {
   // grab assests from web server (ie ur pictures)
   preload() {
     //grab the background image from server
-    this.load.image("tiles", "../assets/terrain.png");
-    this.load.tilemapTiledJSON("map", "../tiledAssets/mapTest3/map.json");
+    this.load.image("tiles", CN.fileStart+"/terrain.png");
+    this.load.tilemapTiledJSON("map", CN.fileStart + "/tiledAssets/mapTest3/map.json");
 
-    this.load.multiatlas('player', '../assets/atlas/blah.json', '../assets/atlas');
+    this.load.multiatlas('player', CN.fileStart + '/atlas/blah.json', CN.fileStart + '/atlas');
   }
 
   // present assets on screen, load assets in client
   create() {
-    if (GameSceneConsts.startAsPaused) {
+    if (CN.startAsPaused) {
       this.game.pause();
     }
     //funny finder lib c:
@@ -131,7 +122,7 @@ class GameScene extends Phaser.Scene {
 
   checkForTeleportX(player, tile) {
     //if the player has teelported already, don't let them tp again until they're fully off
-    console.log(this.teleporterTimer.getProgress());
+    // console.log(this.teleporterTimer.getProgress());
     if (this.teleporterTimer.getProgress() == 1) {
       this.time.addEvent(this.teleporterTimer);
       if (player.x < 200) {
@@ -147,7 +138,7 @@ class GameScene extends Phaser.Scene {
 
   checkForTeleportY(player, tile) {
     //if the player has teelported already, don't let them tp again until they're fully off
-    console.log(this.teleporterTimer.getProgress());
+    // console.log(this.teleporterTimer.getProgress());
     if (this.teleporterTimer.getProgress() == 1) {
       this.time.addEvent(this.teleporterTimer);
       if (player.y > 200) {
@@ -272,16 +263,32 @@ class GameScene extends Phaser.Scene {
   }
 }
 
+// Player.js
+class Player {
+  constructor(scene) {
+      this.scene = scene;
+      // Initialize player properties (e.g., position, animations)
+  }
+
+  create() {
+      // Create player sprites, animations, and input handling
+  }
+
+  update() {
+      // Update player logic (e.g., movement, collisions)
+  }
+
+  // Add any other player-specific methods here
+}
+
 //FEATURE
 document.getElementById("start").addEventListener("click", (e) => {
-  console.log("hi");
   if (game.isPaused) game.resume();
   else game.pause();
 
   isPaused = !isPaused;
 });
-document.getElementById("blah").addEventListener("click", (e) => {
-  console.log("hi");
+document.getElementById("pause").addEventListener("click", (e) => {
   if (game.isPaused) game.resume();
   else game.pause();
 
@@ -293,8 +300,8 @@ document.getElementById("blah").addEventListener("click", (e) => {
 //settings
 const config = {
   type: Phaser.WEBGL,
-  width: SCREENSIZES.img.width,
-  height: SCREENSIZES.img.height,
+  width: CN.screenSize.width,
+  height: CN.screenSize.height,
   canvas: gameCanvas,
   physics: {
     default: "arcade",

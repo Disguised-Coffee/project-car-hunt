@@ -1,3 +1,8 @@
+/**
+ * 
+ */
+
+
 function start(){
     var menu = document.querySelector(".menu");
     var main = document.querySelector("main");
