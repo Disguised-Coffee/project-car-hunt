@@ -1,4 +1,4 @@
-import { build } from "vite";
+
 
 // vite.config.js
 export default {
@@ -13,5 +13,5 @@ export default {
     },
     build: {
         assetsInlineLimit: 0,
-    },
+    }
 }

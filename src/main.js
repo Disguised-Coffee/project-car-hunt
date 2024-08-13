@@ -1,5 +1,7 @@
 import {default as CN} from './constants';
 
+import { atlas, moveMeLater } from './assets';
+
 import Phaser from 'phaser';
 import initDocQueries from './sheet';
 // import js from 'easystarjs';
@@ -68,10 +70,10 @@ class GameScene extends Phaser.Scene {
   // grab assests from web server (ie ur pictures)
   preload() {
     //grab the background image from server
-    this.load.image("tiles", CN.fileStart+"/terrain.png");
-    this.load.tilemapTiledJSON("map", CN.fileStart + "/tiledAssets/mapTest3/map.json");
+    this.load.image("tiles", moveMeLater.map);
+    this.load.tilemapTiledJSON("map", moveMeLater.tileData);
 
-    this.load.multiatlas('player', CN.fileStart + '/atlas/blah.json', CN.fileStart + '/atlas');
+    this.load.multiatlas('player', atlas.playerAtlas, CN.fileStart + '/atlas');
   }
 
   // present assets on screen, load assets in client
