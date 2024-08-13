@@ -1,6 +1,7 @@
 import {default as CN} from './constants';
 
 import Phaser from 'phaser';
+import initDocQueries from './sheet';
 // import js from 'easystarjs';
 
 
@@ -281,19 +282,6 @@ class Player {
   // Add any other player-specific methods here
 }
 
-//FEATURE
-document.getElementById("start").addEventListener("click", (e) => {
-  if (game.isPaused) game.resume();
-  else game.pause();
-
-  isPaused = !isPaused;
-});
-document.getElementById("pause").addEventListener("click", (e) => {
-  if (game.isPaused) game.resume();
-  else game.pause();
-
-  isPaused = !isPaused;
-});
 
 //we need at least a 5:4 ratio for the coord sys
 
@@ -314,3 +302,5 @@ const config = {
 
 
 var game = new Phaser.Game(config);
+
+initDocQueries(game);
