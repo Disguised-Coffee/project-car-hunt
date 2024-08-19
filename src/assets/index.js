@@ -1,4 +1,9 @@
 
+/**
+ * imports images and related from process of JS, rather than after 
+ * due to issues with deployment.
+ */
+
 import CityScapeData from "./tiledAssets/mapTest3/map.json"
 import CityScape from "./terrain.png"
 
@@ -13,5 +18,6 @@ export const atlas = {
 
 export const moveMeLater = {
     map : CityScape,
-    tileData : CityScapeData
+    tileData : CityScapeData,
+    player:test
 }

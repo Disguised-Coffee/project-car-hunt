@@ -73,7 +73,8 @@ class GameScene extends Phaser.Scene {
     this.load.image("tiles", moveMeLater.map);
     this.load.tilemapTiledJSON("map", moveMeLater.tileData);
 
-    this.load.multiatlas('player', atlas.playerAtlas, CN.fileStart + '/atlas');
+    this.load.image("player", moveMeLater.player)
+
   }
 
   // present assets on screen, load assets in client
@@ -91,7 +92,9 @@ class GameScene extends Phaser.Scene {
     // Parameters: layer name (or index) from Tiled, tileset, x, y
     this.layer = this.map.createLayer("floor", tileset, 0, 0);
 
-    this.player = this.physics.add.sprite(100, 100, 'player', 'blah.png');
+    // this.player.
+
+    this.player = this.physics.add.sprite(100, 100, 'player');
 
     this.player.setScale(0.75);
 
