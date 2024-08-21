@@ -9,23 +9,27 @@
 </head>
 
 <body>
+  <div class="absolute w-auto right-[0.5vw] top-[50%] translate-y-[-50%] mr-0 h-[100px] bg-red-100 z-[3]">
+    <button id="pause" class=" ">Pause</button>
+  </div>
   <div class="menu">
     <h1>OPPA<br>STOPPA</h1>
 
     <div class="menu-buttons">
       <h2>Ready to run from the opps?</h2>
-      <img src="redCar.png" class="h-[3rem] w-[100px]"/>
+      <img src="redCar.png" class="h-[3rem] w-[100px]" />
       <button id="start">Start?</button>
     </div>
   </div>
   <main>
-    <div class="absolute right-[-1px] top-[50%] translate-y-[-50%] ml-auto mr-0 h-[100px] w-[50px] bg-red-100">
-      <button id="pause" class="absolute left-[50%] top-[1.3vw] translate-x-[-50%]">Pause</button>
-    </div>
-    <canvas id="gameCanvas"></canvas>
+
+    <!-- <div class="absolute w-auto right-[-1px] top-[50%] translate-y-[-50%] mr-0 h-[100px] bg-red-100">
+      <button id="pause" class=" ">Pause</button>
+    </div> -->
+    <canvas id="gameCanvas" class="scale-[.7]"></canvas>
     <script type="module" src="src/main.js"></script>
   </main>
-  
+
 </body>
 
 </html>

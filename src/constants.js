@@ -1,14 +1,22 @@
+export const constants = {
+  img: {
+    car: 0.5
+  },
+  playerSpeed: 230, //320, 400, 600
+  startAsPaused: true,
+  fileStart: "src/assets",
+  screenSize: {
+    width: 1024, //32px * 32 tiles
+    height: 832 // 32px * 26 tiles
+  },
 
-
-export default class Constants {
-    static img = {
-        car: 0.5,
-    };
-    static playerSpeed = 230;
-    static startAsPaused = true;
-    static fileStart = "src/assets";
-    static screenSize = {
-        width: 960,
-        height: 768,
-    };
-}
+  /**
+   * Player directions, based on Radians
+   */
+  playerDir: {
+    UP: 0,
+    DOWN: -Math.PI,
+    LEFT: -Math.PI / 2,
+    RIGHT: Math.PI / 2
+  }
+};
