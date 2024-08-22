@@ -5,7 +5,7 @@
  * hi
  */
 
-import { constants } from "./constants";
+import { constants } from "./utils/constants";
 
 /**
  *
@@ -52,9 +52,8 @@ export default function initDocQueries(gameScene) {
   });
 }
 
-export function updateScores(gameScene) {
+export function updateScoreBoard(speed, score) {
   // definitely goinmg to have to do optimizations here
-  document.getElementById("speed").innerHTML = Math.floor(
-    gameScene.currSpeed * 100 * constants.blocksToMiles * constants.bloatConversion
-  );
+  document.getElementById("speed").innerHTML = speed;
+  document.getElementById("score").innerHTML = score;
 }

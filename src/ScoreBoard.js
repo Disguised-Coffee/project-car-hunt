@@ -1,5 +1,5 @@
-import { updateScores } from "./sheet";
-import { constants as CN } from "./constants";
+import { updateScoreBoard } from "./sheet";
+import { constants as CN } from "./utils/constants";
 
 // Player.js
 export class ScoreBoard {
@@ -9,23 +9,24 @@ export class ScoreBoard {
     this.lastCord;
     this.currSpeed;
     this.player = player;
-    this.score;
+
     this.runStart;
   }
 
-  create(player) {
+  createSB(player) {
     // Create player sprites, animations, and input handling
     this.player = player;
     this.lastCord = this.player.getCenter();
+    this.score = 0;
   }
 
-  update(time, delta) {
-    // Update player logic (e.g., movement, collisions)
+  updateSB(time, delta) {
     //get velocity
     this.currSpeed = this.getPlayerVelocity(delta);
-    updateScores(this);
+    updateScoreBoard(this.getFancySpeed(), this.getScore());
 
     // use time for time based score.
+    this.updateScore(time);
   }
 
   // Add any other player-specific methods here
@@ -47,6 +48,30 @@ export class ScoreBoard {
     this.lastCord = this.player.getCenter();
     return toR;
   }
+
+  getFancySpeed() {
+    return Math.floor(this.currSpeed * 100 * CN.blocksToMiles * CN.bloatConversion);
+
+    // * (1 / this.scene.teleporters.getNumberOfTPInInterval())
+  }
+
+  updateScore(time) {
+    // console.log("invervals: ", this.scene.teleporters.getNumberOfTPInInterval());
+    // console.log("inverse: ", 1 / this.scene.teleporters.getNumberOfTPInInterval());
+    console.log("New speed score", this.getFancySpeed() * 0.09);
+    console.log("speed score", this.getFancySpeed() * 0.25);
+    // console.log(this.scene.teleporters.getTimeSinceLastTeleport());
+    this.score +=
+      this.scene.teleporters.getTimeSinceLastTeleport() == CN.recMilliTPInterval
+        ? Math.floor(this.getFancySpeed() * 0.049)
+        : Math.floor(1 / this.scene.teleporters.getNumberOfTPInInterval());
+  }
+
+  getScore() {
+    // console.log(this.score);
+    return this.score;
+  }
+
   resetScore() {
     this.score = 0;
   }

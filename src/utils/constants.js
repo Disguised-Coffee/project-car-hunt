@@ -2,7 +2,7 @@ export const constants = {
   img: {
     car: 0.5
   },
-  playerSpeed: 230,
+  playerSpeed: 2000,
   playerSpeedCaps: {
     normal: 230,
     fast: 320,
@@ -19,6 +19,7 @@ export const constants = {
     width: 1024, //32px * 32 tiles
     height: 832 // 32px * 26 tiles
   },
+  recMilliTPInterval: 2000,
 
   /**
    * Player directions, based on Radians
