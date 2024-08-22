@@ -2,7 +2,7 @@ export const constants = {
   img: {
     car: 0.5
   },
-  playerSpeed: 2000,
+  playerSpeed: 230,
   playerSpeedCaps: {
     normal: 230,
     fast: 320,
