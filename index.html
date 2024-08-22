@@ -9,27 +9,34 @@
 </head>
 
 <body>
-  <div class="absolute w-auto right-[0.5vw] top-[50%] translate-y-[-50%] mr-0 h-[100px] bg-red-100 z-[3]">
-    <button id="pause" class=" ">Pause</button>
-  </div>
-  <div class="menu">
-    <h1>OPPA<br>STOPPA</h1>
+  <!-- Overlay -->
+  <div class="overlay">
+    <div class="menu">
+      <h1 class="title text-[3.5rem]">OPPA<br>STOPPA</h1>
 
-    <div class="menu-buttons">
-      <h2>Ready to run from the opps?</h2>
-      <img src="redCar.png" class="h-[3rem] w-[100px]" />
-      <button id="start">Start?</button>
+      <div class="menu-buttons">
+        <h2 class="mb-[0.5rem] mt-[2.7rem] italic w-[20vw]">Ready to run from the opps?</h2>
+        <button id="start" class="w-auto m-auto">Start</button>
+      </div>
     </div>
   </div>
-  <main>
+  <div class="gameSpace">
+    <!-- Right Side stats -->
+    <!-- This should have its own animation of sliding in from the right -->
+    <div class="absolute w-auto right-[0.5vw] top-[50%] translate-y-[-50%] mr-0 h-[100px] bg-red-100 z-[2]">
+      <p>Score: <span id="score">0</span></p>
+      <p>Speed: <span id="speed">0</span><span id="metric"> MPH</span></p>
+      <p>Difficulty: <span id="dif">0</span></p>
+      <p>Stage: <span id="stage">0</span></p>
 
-    <!-- <div class="absolute w-auto right-[-1px] top-[50%] translate-y-[-50%] mr-0 h-[100px] bg-red-100">
       <button id="pause" class=" ">Pause</button>
-    </div> -->
-    <canvas id="gameCanvas" class="scale-[.7]"></canvas>
-    <script type="module" src="src/main.js"></script>
-  </main>
-
+    </div>
+    <!-- Menu -->
+    <main>
+      <canvas id="gameCanvas" class="scale-[.7] w-auto m-auto mt-[-6%]"></canvas>
+      <script type="module" src="src/main.js"></script>
+    </main>
+  </div>
 </body>
 
 </html>

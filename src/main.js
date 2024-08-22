@@ -1,24 +1,28 @@
-import { constants as CN } from "./constants";
+import { constants as CN } from "./utils/constants";
 
-import { atlas, moveMeLater } from "./assets";
+import { moveMeLater } from "./assets";
 
 import Phaser from "phaser";
 import initDocQueries from "./sheet";
+import { ScoreBoard } from "./ScoreBoard";
+import { Teleporters } from "./Teleporters";
 // import js from 'easystarjs';
 
 class GameScene extends Phaser.Scene {
-  teleporterTimer;
+  // teleporterTimer;
+  // time;
   constructor() {
     super("scene-game");
+
     this.player; //adds the variable player to the game obj
+    this.scoreBoard = new ScoreBoard(this);
+    this.teleporters = new Teleporters(this);
     this.playerSpeed = CN.playerSpeed;
 
     this.cursor; //obj for keydowns
     this.dir = 0;
 
     this.isPaused = false;
-
-    this.playerCanTeleport = false;
 
     // this.finder = new js();
 
@@ -89,20 +93,21 @@ class GameScene extends Phaser.Scene {
 
     this.player.setCollideWorldBounds(true);
 
-    this.leftRightTP = this.map.filterTiles((tile) => tile.index === 6);
-    this.upDownTP = this.map.filterTiles((tile) => tile.index === 5);
+    // this.leftRightTP = this.map.filterTiles((tile) => tile.index === 6);
+    // this.upDownTP = this.map.filterTiles((tile) => tile.index === 5);
 
     this.map.setCollision([3, 8, 7, 11, 9]);
 
-    //tunnels
-    this.leftSpawn = this.map.findObject("Teleporters", (obj) => obj.name === "TpLEFT");
-    this.rightSpawn = this.map.findObject("Teleporters", (obj) => obj.name === "TpRIGHT");
-    this.upSpawn = this.map.findObject("Teleporters", (obj) => obj.name === "TpUP");
-    this.bottomSpawn = this.map.findObject("Teleporters", (obj) => obj.name === "TpDOWN");
+    this.centerSpawn = this.map.findObject("SpawnPoints", (obj) => obj.name === "SpawnPointCenter");
+
+    this.leftTP = this.map.findObject("Teleporters", (obj) => obj.name === "TpLEFT");
+    this.rightTP = this.map.findObject("Teleporters", (obj) => obj.name === "TpRIGHT");
+    this.upTP = this.map.findObject("Teleporters", (obj) => obj.name === "TpUP");
+    this.downTP = this.map.findObject("Teleporters", (obj) => obj.name === "TpDOWN");
 
     //tunnel timer
-    this.teleporterTimer = this.time.addEvent({ delay: 2000 });
-    this.time.addEvent(this.teleporterTimer);
+    // this.teleporterTimer = this.time.addEvent({ delay: 2000 });
+    // this.time.addEvent(this.teleporterTimer);
 
     //obj to hold
     this.cursor = this.input.keyboard.createCursorKeys();
@@ -111,51 +116,14 @@ class GameScene extends Phaser.Scene {
     this.setRandomDir();
     this.setPlayerToNearestCord(true);
     this.setPlayerToNearestCord(false);
-  }
 
-  checkForTeleportX(player, tile) {
-    //player is at left side
-    if (player.rotation == CN.playerDir.LEFT && player.x < 200) {
-      player.setX(this.rightSpawn.x);
-    }
-    // player on right side.
-    else if (player.rotation == CN.playerDir.RIGHT && player.x > 200) {
-      player.setX(this.leftSpawn.x);
-    }
-  }
-
-  checkForTeleportY(player, tile) {
-    //roataion = 0 (up)
-    // console.log(player.rotation);
-    // console.log(player.y);
-    if (player.rotation == CN.playerDir.UP && player.y < 200) {
-      console.log(player.rotation);
-      player.setY(this.bottomSpawn.y);
-    }
-    //rotation = -PI
-    else if (player.rotation == CN.playerDir.DOWN && player.y > 200) {
-      player.setY(this.upSpawn.y);
-    }
-
-    //if the player has teelported already, don't let them tp again until they're fully off
-    // console.log(this.teleporterTimer.getProgress());
-    if (this.teleporterTimer.getProgress() == 1) {
-      this.time.addEvent(this.teleporterTimer);
-    }
+    this.scoreBoard.createSB(this.player);
+    this.teleporters.createTP(this.map);
   }
 
   // update values
-  update() {
-    // check for teleport
-    this.physics.world.overlapTiles(
-      this.player,
-      this.leftRightTP,
-      this.checkForTeleportX,
-      null,
-      this
-    );
-    this.physics.world.overlapTiles(this.player, this.upDownTP, this.checkForTeleportY, null, this);
-
+  update(time, delta) {
+    this.teleporters.updateTP(this.player);
     this.physics.collide(this.player, this.layer);
 
     // console.log(this.map.worldToTileX(this.player.x));
@@ -168,10 +136,7 @@ class GameScene extends Phaser.Scene {
     // for directions
 
     this.handleMovement();
-  }
-
-  teleportPlayer() {
-    console.log("SUCCESS!");
+    this.scoreBoard.updateSB(time, delta);
   }
 
   /**
@@ -201,11 +166,19 @@ class GameScene extends Phaser.Scene {
 
     // console.log(tile.getCenterX);
     // console.log(tile);
-    if (setXorY) {
-      this.player.setX(tile.getCenterX());
-    } else {
-      this.player.setY(tile.getCenterY());
+    try {
+      if (setXorY) {
+        this.player.setX(tile.getCenterX());
+      } else {
+        this.player.setY(tile.getCenterY());
+      }
+    } catch (TypeError) {
+      //[] fix this to nearest spawn point
+      //ie: car literally out of bounds
+      this.player.setX(this.centerSpawn.x);
+      this.player.setY(this.centerSpawn.y);
     }
+
     // this.player.setX(tile.getCenterX()).setY(tile.getCenterY());
   }
 

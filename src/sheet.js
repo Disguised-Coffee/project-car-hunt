@@ -5,6 +5,8 @@
  * hi
  */
 
+import { constants } from "./utils/constants";
+
 /**
  *
  * @param {*} gameScene valid game scene
@@ -15,7 +17,7 @@
 export default function initDocQueries(gameScene) {
   document.getElementById("start").addEventListener("click", (e) => {
     document.querySelector(".menu").style.display = "none";
-    document.querySelector("main").style.filter = "blur(0px)";
+    document.querySelector(".gameSpace").style.filter = "blur(0px)";
   });
 
   //FEATURE
@@ -37,7 +39,7 @@ export default function initDocQueries(gameScene) {
   }
 
   document.addEventListener("keydown", (e) => {
-    console.log(e.key);
+    // console.log(e.key);
     if (e.key == " ") {
       if (gameScene.isPaused) {
         gameScene.resume();
@@ -48,4 +50,10 @@ export default function initDocQueries(gameScene) {
       }
     }
   });
+}
+
+export function updateScoreBoard(speed, score) {
+  // definitely goinmg to have to do optimizations here
+  document.getElementById("speed").innerHTML = speed;
+  document.getElementById("score").innerHTML = score;
 }
