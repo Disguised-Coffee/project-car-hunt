@@ -1,12 +1,29 @@
 # Project-Car-Hunt <i>aka OPPA STOPPA</i>
 
-<i>Documentation is cool</i>
+Project Car Hunt <i>aka OPPA STOPPA</i> is a web based, single scene video game made from a final year project of a trio of students of <b>Code Nation's Fellowship 1</b> *(afterschool, highschool program)* with about 2 weeks worth of time. The game features a pac-man-like map with what was supposed to be Slither.io AI-bot mechanics.
 
-## How to run
+## 🚀 Tech Stack
 
-<b>MUST HAVE NODE.JS and NPM INSTALLED</b> If you don't, here it <a href="https://nodejs.org/en">is</a>.
+- **Backend** NodeJS: *Serves website and handles PhaserJS asset calls*
 
-1.  type in `npm run dev` to your terminal. This will run the run that launches the page.
-2.  Open the page that the terminal says where the page is being launched to. adrian is sigma
+- **Game Engine** PhaserJS: *Ready to develop 2D game framework with lengthy documentation and community with secure backend connections*
 
-This is a test
+- **Frontend** HTML, CSS, JS: *Foundational languages for web development*
+
+## 🔧 How to run
+
+1. Clone the repository
+```bash
+git clone https://github.com/Disguised-Coffee/project-car-hunt.git
+cd healthcare-connect
+```
+2. Install dependencies
+```bash
+npm install
+```
+
+3. Start the development server
+```bash
+npm run dev
+```
+4. Open your browser and go to http://localhost:5173/project-car-hunt/
