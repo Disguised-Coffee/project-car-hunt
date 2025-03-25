@@ -15,7 +15,7 @@ Project Car Hunt <i>aka OPPA STOPPA</i> is a web based, single scene video game 
 1. Clone the repository
 ```bash
 git clone https://github.com/Disguised-Coffee/project-car-hunt.git
-cd healthcare-connect
+cd project-car-hunt
 ```
 2. Install dependencies
 ```bash
